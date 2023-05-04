@@ -1,0 +1,24 @@
+.header {
+    background-color: darkgrey;
+}
+
+.cards {
+    background-color: burlywood;
+}
+
+.card {
+    background-color: rgba($color: #777, $alpha: 0.5);
+    .image {
+        width: 50%;
+        margin: 0 auto;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .cards {
+        display: flex;
+    }
+}
