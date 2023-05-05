@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="scss/style.scss">
+</head>
+<body>
+    <h1>Forms</h1>
+
+    <form action="https://classes.codingbootcamp.cz/assets/classes/request-visualization/script.php" method="get">
+
+
+        <input type="text" name="short_text" placeholder="hint or example value"><br>
+        <input type="number" name="age" value="18"><br>
+        <!-- <input type="datetime-local" name="age"><br> -->
+        <input type="hidden" name="hidden_input" value="secret" />
+
+        Are you well rested after lunch?<br>
+        <label for="rested-yes">Yes</label>
+        <input id="rested-yes" type="checkbox" name="lunch_rested_yes" checked><br>
+        <label for="rested-no">No</label>
+        <input id="rested-no" type="checkbox" name="lunch_rested_no"><br>
+
+        Are you well rested after lunch?<br>
+        <label for="rested-yes">Yes</label>
+        <input id="rested-yes" type="radio" name="lunch_rested" value="yes"><br>
+        <label for="rested-no">No</label>
+        <input id="rested-no" type="radio" name="lunch_rested" value="no"><br>
+
+        <select name="lunch_good" id="lunch-good">
+            <option value="yes">Yes</option>
+            <option value="no" selected>No</option>
+        </select>
+        <br>
+
+        <!-- What did you have for lunch?<br>
+        <textarea name="lunch_what" id="" cols="4" rows="10"></textarea> -->
+
+        What did you have for lunch?<br>
+        <input type="text" name="lunch_what[]" id=""><br>
+        <input type="text" name="lunch_what[]" id=""><br>
+
+        <!-- <label for="check">Click me</label>
+            <input type="checkbox" id="check" name="check" checked><br>
+            <textarea name="long_text" placeholder="A textarea can contain multiple lines"></textarea><br> -->
+
+        <!-- <input type="submit" name="sbc" value="Submit the form!"><br> -->
+
+        <button><strong>Submit</strong></button><br>
+
+    </form>
+</body>
+</html>
