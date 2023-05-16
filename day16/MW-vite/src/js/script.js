@@ -5,6 +5,7 @@ const conversationElement = document.querySelector('.conversation');
 const conversation = new Conversation(conversationElement)
 
 listOfMessages.forEach((message, index) => {
+  debugger;
   setTimeout(() => {
     conversation.addMessage(message)
   }, 500 * index);
