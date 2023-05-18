@@ -1,11 +1,16 @@
 export class Card {
-    constructor (properties) {
+    constructor (properties, onClickFunction, index) {
+        this.onClickFunction = onClickFunction
+        this.index = index
+        // console.log(this.onClickFunction)
         this.properties = properties
-        console.log(this.properties)
+        // console.log(this.properties)
         this.rank = properties.rank
         // this.suit = properties.suit
         this.element = null // document.createElement('div')
         this.faceDown = false;
+
+        // console.log(this);
 
         this.createStartingElement()
     }
@@ -28,10 +33,12 @@ export class Card {
     attachStaticEventListeners() {
         this.element.addEventListener('click', () => {
             // console.log("Future rank: "+ Number(this.rank + 1))
-            if (this.rank < 13) {
-                this.rank += 1
-            }
-            this.updateDynamicValues()
+            // if (this.rank < 13) {
+            //     this.rank += 1
+            // }
+            // setLastClickedCard()
+            // this.updateDynamicValues()
+            this.onClickFunction(this.index + 1)
         })
     }
 
