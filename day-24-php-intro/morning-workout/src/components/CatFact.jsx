@@ -1,7 +1,5 @@
 import {useState, useEffect} from 'react'
 
-
-
 const CatFact = () => {
 
     const [data, setData] = useState(null)
