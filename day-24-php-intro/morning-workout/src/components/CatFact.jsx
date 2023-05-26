@@ -6,7 +6,7 @@ const CatFact = () => {
     const [dataLoaded, setDataLoaded] = useState(false)
 
     const fetchData = async () => {
-        const response = await fetch('https://catfact.ninja/fact')
+        const response = await fetch('http://www.home.test/day-25-requests/morning-workout/catfact.php')
         const responseData = await response.json()
         setData(responseData)
         setDataLoaded(true)
