@@ -2,12 +2,7 @@
 
 require_once 'DBBlackbox.php';
 require_once 'Song.php';
-
-// start the session
-session_start();
-
-// find the ID of the record we want to edit in the request
-$id = $_GET['id'];
+require_once 'helpers.php';
 
 // validation
 // 1. say that everything is ok
@@ -35,16 +30,16 @@ if (!is_numeric($_POST['length'] ?? '')) {
 if (!$valid) {
 
     // flash the error messages
-    $_SESSION['errors'] = $errors;
+    session()->put('errors', $errors);
 
     // redirect back to where the user came from
-    header('Location: edit.php?id='.$id);
+    header('Location: create.php');
     // stop the script right here
     exit();
 }
 
-// somehow retrieve existing data from some storage
-$song = find( $id, 'Song' );
+// prepare empty entity
+$song = new Song;
 
 // update entity from request
 $song->name = $_POST['name'] ?? $song->name; // if 'name' was not found in $_POST data, keep the current value
@@ -52,12 +47,21 @@ $song->author = $_POST['author'] ?? $song->author;
 $song->length = $_POST['length'] ?? $song->length;
 $song->album = $_POST['album'] ?? $song->album;
 
+// potentially unsafe approach to updating the Song
+// from $_POST:
+// foreach ($_POST as $key => $value) {
+//     $song->{$key} = $value;
+// }
 
-// somehow save the data into the database (using the unique ID)
-update($id, $song);
 
+// somehow insert the entity into the database and generate a unique ID
+// here done using DBBlackbox
+$id = insert($song);
+
+// everything went well
+// time for a success message "successfully saved"
 // put the success message into the session
-$_SESSION['success_message'] = 'Song successfully updated.';
+session()->put('success_message', 'Song successfully inserted.');
 
 // redirect to edit form for this song
 //                edit.php?id=1

@@ -2,9 +2,10 @@
 
 require_once 'DBBlackbox.php';
 require_once 'Song.php';
+require_once 'helpers.php';
 
 // start the session
-session_start();
+session();
 
 if (isset($_SESSION['success_message'])) {
     // if there is a 'success_message' element in the session

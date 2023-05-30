@@ -2,9 +2,8 @@
 
 require_once 'DBBlackbox.php';
 require_once 'Song.php';
+require_once 'helpers.php';
 
-// start the session
-session_start();
 
 // find the ID of the record we want to edit in the request
 $id = $_GET['id'];
@@ -35,7 +34,7 @@ if (!is_numeric($_POST['length'] ?? '')) {
 if (!$valid) {
 
     // flash the error messages
-    $_SESSION['errors'] = $errors;
+    session()->put('errors', $errors);
 
     // redirect back to where the user came from
     header('Location: edit.php?id='.$id);
@@ -57,7 +56,7 @@ $song->album = $_POST['album'] ?? $song->album;
 update($id, $song);
 
 // put the success message into the session
-$_SESSION['success_message'] = 'Song successfully updated.';
+session()->put('success_message', 'Song successfully updated.');
 
 // redirect to edit form for this song
 //                edit.php?id=1
