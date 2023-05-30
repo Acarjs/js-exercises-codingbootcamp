@@ -6,6 +6,15 @@ require_once 'Song.php';
 // start the session
 session_start();
 
+// find potential errors in the session
+if (isset($_SESSION['errors'])) {
+    // if there is a 'errors' element in the session
+    // take its value and put it into a variable $errors
+    $errors = $_SESSION['errors'];
+
+    // delete it from the session === flashing
+    unset($_SESSION['errors']);
+}
 
 // prepare empty entity
 $song = new Song;
@@ -22,6 +31,13 @@ $song = new Song;
 <body>
 
     <?php include 'topmenu.php'; ?>
+
+    <!-- if there are errors, display them -->
+    <?php if (!empty($errors)) : ?>
+        <?php foreach ($errors as $error) : ?>
+            <div class="error-message"><?= $error ?></div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 
     <form action="insert.php" method="post">
 

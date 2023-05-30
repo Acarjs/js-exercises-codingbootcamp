@@ -6,6 +6,41 @@ require_once 'Song.php';
 // start the session
 session_start();
 
+
+// validation
+// 1. say that everything is ok
+$valid = true;
+$errors = [];
+
+// 2. ask about the incoming data and if any of them
+//    are not ok, fail the validation
+if (trim($_POST['name'] ?? '') === '') {
+    $valid = false;
+    $errors[] = 'Name cannot be empty';
+}
+
+if (trim($_POST['author'] ?? '') === '') {
+    $valid = false;
+    $errors[] = 'Author name cannot be empty';
+}
+
+if (!is_numeric($_POST['length'] ?? '')) {
+    $valid = false;
+    $errors[] = 'Length must be a number';
+}
+
+// 3. ask if any of the validations failed
+if (!$valid) {
+
+    // flash the error messages
+    $_SESSION['errors'] = $errors;
+
+    // redirect back to where the user came from
+    header('Location: create.php');
+    // stop the script right here
+    exit();
+}
+
 // prepare empty entity
 $song = new Song;
 
