@@ -34,7 +34,11 @@ if (!is_numeric($_POST['length'] ?? '')) {
 if (!$valid) {
 
     // flash the error messages
-    session()->put('errors', $errors);
+    session()->flash('errors', $errors);
+
+    // flash the entire POST request so that it can be
+    // used to show the user his errors
+    session()->flashRequest();
 
     // redirect back to where the user came from
     header('Location: edit.php?id='.$id);
@@ -56,7 +60,7 @@ $song->album = $_POST['album'] ?? $song->album;
 update($id, $song);
 
 // put the success message into the session
-session()->put('success_message', 'Song successfully updated.');
+session()->flash('success_message', 'Song successfully updated.');
 
 // redirect to edit form for this song
 //                edit.php?id=1

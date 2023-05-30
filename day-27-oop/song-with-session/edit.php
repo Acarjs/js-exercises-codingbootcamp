@@ -4,28 +4,6 @@ require_once 'DBBlackbox.php';
 require_once 'Song.php';
 require_once 'helpers.php';
 
-// start the session
-session();
-
-if (isset($_SESSION['success_message'])) {
-    // if there is a 'success_message' element in the session
-    // take its value and put it into a variable $success_message
-    $success_message = $_SESSION['success_message'];
-
-    // delete it from the session === flashing
-    unset($_SESSION['success_message']);
-}
-
-// find potential errors in the session
-if (isset($_SESSION['errors'])) {
-    // if there is a 'errors' element in the session
-    // take its value and put it into a variable $errors
-    $errors = $_SESSION['errors'];
-
-    // delete it from the session === flashing
-    unset($_SESSION['errors']);
-}
-
 // find the ID of the record we want to edit in the request
 $id = $_GET['id'] ?? null;
 
@@ -35,6 +13,9 @@ if ($id === null) {
 
 // somehow retrieve existing song from some storage
 $song = find( $id, 'Song' );
+
+$success_message = session()->get('success_message');
+$errors = session()->get('errors');
 
 ?>
 <!DOCTYPE html>
@@ -49,12 +30,12 @@ $song = find( $id, 'Song' );
 
     <?php include 'topmenu.php'; ?>
 
-    <?php if (!empty($success_message)) : ?>
+    <?php if ($success_message) : ?>
         <div class="success-message"><?= $success_message ?></div>
     <?php endif; ?>
 
     <!-- if there are errors, display them -->
-    <?php if (!empty($errors)) : ?>
+    <?php if ($errors) : ?>
         <?php foreach ($errors as $error) : ?>
             <div class="error-message"><?= $error ?></div>
         <?php endforeach; ?>
@@ -65,19 +46,19 @@ $song = find( $id, 'Song' );
         <!-- display the form prefilled with entity data -->
 
         Name:<br>
-        <input type="text" name="name" value="<?= htmlspecialchars((string)$song->name) ?>"><br>
+        <input type="text" name="name" value="<?= htmlspecialchars((string)old('name', $song->name)) ?>"><br>
         <br>
 
         Author:<br>
-        <input type="text" name="author" value="<?= htmlspecialchars((string)$song->author) ?>"><br>
+        <input type="text" name="author" value="<?= htmlspecialchars((string)old('author', $song->author)) ?>"><br>
         <br>
 
         Length:<br>
-        <input type="number" name="length" value="<?= htmlspecialchars((string)$song->length) ?>"> seconds<br>
+        <input type="number" name="length" value="<?= htmlspecialchars((string)old('length', $song->length)) ?>"> seconds<br>
         <br>
 
         Album:<br>
-        <input type="text" name="album" value="<?= htmlspecialchars((string)$song->album) ?>"><br>
+        <input type="text" name="album" value="<?= htmlspecialchars((string)old('album', $song->album)) ?>"><br>
         <br>
 
         <button type="submit">Save</button>

@@ -30,7 +30,11 @@ if (!is_numeric($_POST['length'] ?? '')) {
 if (!$valid) {
 
     // flash the error messages
-    session()->put('errors', $errors);
+    session()->flash('errors', $errors);
+
+    // flash the entire POST request so that it can be
+    // used to show the user his errors
+    session()->flashRequest();
 
     // redirect back to where the user came from
     header('Location: create.php');
@@ -61,7 +65,7 @@ $id = insert($song);
 // everything went well
 // time for a success message "successfully saved"
 // put the success message into the session
-session()->put('success_message', 'Song successfully inserted.');
+session()->flash('success_message', 'Song successfully inserted.');
 
 // redirect to edit form for this song
 //                edit.php?id=1
