@@ -30,7 +30,7 @@ $errors = session()->get('errors');
 
     <?php include 'topmenu.php'; ?>
 
-    <?php if ($success_message) : ?>
+    <?php if (!$success_message) : ?>
         <div class="success-message"><?= $success_message ?></div>
     <?php endif; ?>
 
