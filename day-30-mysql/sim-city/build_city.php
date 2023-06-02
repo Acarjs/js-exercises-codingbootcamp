@@ -18,9 +18,9 @@ $city->country_id = $city_data['country_id'];
 $city->district = $city_data['district'];
 $city->population = $city_data['population'];
 
-var_dump($city_data);
-echo "<br>";
-var_dump($city);
+// var_dump($city_data);
+// echo "<br>";
+// var_dump($city);
 // die();
 
 // make sure the $city has the property it needs to have
