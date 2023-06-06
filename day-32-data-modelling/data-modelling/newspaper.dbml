@@ -1,0 +1,28 @@
+Table articles {
+  id "int"
+  author_id "int" [ref: > authors.id]
+}
+
+Table authors {
+  id "int"
+  user_id "int" [ref: - users.id]
+}
+
+Table users {
+  id "int"
+  email "string"
+  password "string"
+}
+
+Table readers {
+  id "int"
+  user_id "int" [ref: - users.id]
+}
+
+Table comments {
+  id "int"
+  reader_id "int" [ref: > readers.id]
+  article_id "int" [ref: > articles.id]
+  text "text"
+  created_at "timestamp"
+}

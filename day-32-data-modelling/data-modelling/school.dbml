@@ -1,0 +1,32 @@
+
+
+Table students {
+  id "int"
+  user_id "int" [ref: - users.id]
+  mentor_id "int" [ref: > mentors.id]
+}
+
+Table users {
+  id "int"
+}
+
+Table papers {
+  id "int"
+  student_id "int" [ref: > students.id]
+  class_id "int" [ref: > classes.id]
+}
+
+Table classes {
+  id "int"
+}
+
+Table class_student {
+  id "int"
+  class_id "int" [ref: > classes.id]
+  student_id "int" [ref: > students.id]
+}
+
+Table mentors {
+  id "int"
+  student_id "int" [ref: - students.id]
+}

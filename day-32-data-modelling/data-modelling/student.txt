@@ -1,0 +1,19 @@
+students
+---------
+id                  integer
+date_of_birth       date
+picture             short string (URL)
+academic_results    short string
+first_name          short string
+last_name           short string
+middle_name         short string
+address             short string
+major               short string
+parents_information long string
+course_completed    boolean
+health_info         long string
+attendance_report   long string
+cv_document         short string (path to the file)
+gender              short string
+phone_number        short string
+average             decimal
