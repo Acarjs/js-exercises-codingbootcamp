@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MI6 Agent's interface</title>
+
+    <link rel="stylesheet" href="style.scss">
+  </head>
+  <body>
+
+    <div class="navigation">
+      <div class="seal">
+        <div class="controller">
+          <p>&lt;</p>
+        </div>
+      </div>
+      <div class="links">
+        <div class="selected">
+          <p>Home</p>
+        </div>
+        <div>
+          <p>People of Interest</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <h1>Welcome to MI6</h1>
+    </div>
+
+    <script>
+      const navPanel = document.querySelector('.navigation')
+      const controller = document.querySelector('.controller')
+      controller.addEventListener('click', () => {
+        navPanel.classList.toggle('closed')
+        const controllerText = controller.querySelector('p')
+        controllerText.textContent = controllerText.textContent == "<" ? ">" : "<"
+      })
+    </script>
+
+    <!-- your code here -->
+    <!-- refer to images in /public with URLs beginning with / -->
+
+  </body>
+</html>
